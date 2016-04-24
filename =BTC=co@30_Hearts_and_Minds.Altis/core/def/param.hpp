@@ -25,7 +25,7 @@ class Params {
         title = "Enemy type:";
 		values[]={0,1,2,3};
 		texts[]={"Guerrilla (A3)","CAF","AAF (A3)","RHS Insurgents"};
-		default = 2;
+		default = 3;
 	};
 	class btc_p_ied {
 	//paramsArray[4]
@@ -193,13 +193,13 @@ class Params {
 		title = "Extend battlefield to sea:";
 		values[] = {0,1};
 		texts[] = {"Off","On"};
-		default = 1;
+		default = 0;
     };
 	class btc_p_civ {
 	//paramsArray[28]
         title = "Civil type:";
 		values[]={0,1};
 		texts[]={"Civilian (A3)","Afghan (@Ericj_Taliban)"};
-		default = 0;
+		default = 1;
 	};
 };
