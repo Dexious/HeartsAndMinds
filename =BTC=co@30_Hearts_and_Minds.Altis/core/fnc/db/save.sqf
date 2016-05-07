@@ -5,7 +5,7 @@ _playerKills = profileNamespace getVariable "var_kills";*/
 
 call btc_fnc_db_delete;
 
-private ["_cities_status","_fobs"];
+private ["_cities_status","_fobs","_name","_array_ho","_data","_array_cache","_array_veh","_array_obj","_cargo","_cont"];
 
 hint "saving...";
 [[8],"btc_fnc_show_hint"] spawn BIS_fnc_MP;
@@ -13,6 +13,10 @@ hint "saving...";
 btc_db_is_saving = true;
 _name = worldName;
 
+//Version
+profileNamespace setVariable [format ["btc_hm_%1_version",_name],btc_version];
+
+//World Date
 profileNamespace setVariable [format ["btc_hm_%1_date",_name],date];
 
 for "_i" from 0 to (count btc_city_all - 1) do {
