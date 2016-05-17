@@ -5,7 +5,7 @@ _playerKills = profileNamespace getVariable "var_kills";*/
 
 call btc_fnc_db_delete;
 
-private ["_cities_status","_fobs","_name","_array_ho","_data","_array_cache","_array_veh","_array_obj","_cargo","_cont"];
+private ["_cities_status","_fobs","_name","_array_ho","_data","_array_cache","_array_veh","_array_obj","_cargo","_cont","_idshift"];
 
 hint "saving...";
 [[8],"btc_fnc_show_hint"] spawn BIS_fnc_MP;
@@ -27,26 +27,32 @@ for "_i" from 0 to (count btc_city_all - 1) do {
 hint "saving...2";
 //City status
 _cities_status = [];
+_idshift = 0;
 {
 	//[151,false,false,true,false,false,[]]
 	_city_status = [];
-	_city_status pushBack (_x getVariable "id");
+	if !(isNull (_x)) then {
+		_city_status pushBack ((_x getVariable "id" ) + _idshift);
 
-	//_city_status pushBack (_x getVariable "name");
+		//_city_status pushBack (_x getVariable "name");
 
-	_city_status pushBack (_x getVariable "initialized");
+		_city_status pushBack (_x getVariable "initialized");
 
-	_city_status pushBack (_x getVariable "spawn_more");
-	_city_status pushBack (_x getVariable "occupied");
+		_city_status pushBack (_x getVariable "spawn_more");
+		_city_status pushBack (_x getVariable "occupied");
 
-	_city_status pushBack (_x getVariable "data_units");
+		_city_status pushBack (_x getVariable "data_units");
 
-	_city_status pushBack (_x getVariable ["has_ho",false]);
-	_city_status pushBack (_x getVariable ["ho_units_spawned",false]);
-	_city_status pushBack (_x getVariable ["ieds",[]]);
+		_city_status pushBack (_x getVariable ["has_ho",false]);
+		_city_status pushBack (_x getVariable ["ho_units_spawned",false]);
+		_city_status pushBack (_x getVariable ["ieds",[]]);
 
-	_cities_status pushBack _city_status;
-	//diag_log format ["SAVE: %1 - %2",(_x getVariable "id"),(_x getVariable "occupied")];
+		_cities_status pushBack _city_status;
+		//diag_log format ["SAVE: %1 - %2",(_x getVariable "id"),(_x getVariable "occupied")];
+	} else {
+		// if city has been remove (only city with destroyed hideout are removed) ignore it and shift down the id of next city
+		_idshift = _idshift - 1;
+	};
 } foreach btc_city_all;
 profileNamespace setVariable [format ["btc_hm_%1_cities",_name],_cities_status];
 
