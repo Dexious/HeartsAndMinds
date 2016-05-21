@@ -149,6 +149,10 @@ if (_has_ho && {!(_city getVariable ["ho_units_spawned",false])}) then {
 	[_pos,120,(1 + random 2),0.5] call btc_fnc_mil_create_group;
 };
 
+/*if (_has_ho && {(_city getVariable ["ho_units_spawned",false])}) then {
+	[(_city getVariable "trigger_link_for_activation") getVariable "id"] spawn btc_fnc_city_activate;
+};*/
+
 if (count _ieds > 0) then {
 	private ["_ieds_data"];
 	_ieds_data = [];
