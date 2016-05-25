@@ -1,5 +1,5 @@
 
-private ["_city","_pos","_radius","_hideout","_random_pos","_city2"];
+private ["_city","_pos","_radius","_hideout","_random_pos","_radius_x","_radius_y","_id"];
 
 _city = objNull;
 
@@ -26,9 +26,19 @@ _pos = [_random_pos, 0, 100, 2, 0, 0.5, 0] call BIS_fnc_findSafePos;//5????
 
 if (count _pos == 0) then {_pos = getPos _city;};
 
+_city setpos _pos;
+_id = _city getVariable ["id",0];
+if (btc_debug) then	{deleteMarker format ["loc_%1",_id];};
+deleteVehicle (_city getVariable ["trigger_player_side",objNull]);
+_radius_x = btc_hideouts_radius;
+_radius_y = btc_hideouts_radius;
+
+[_pos,_radius_x,_radius_y,_city,_city getVariable "occupied",_city getVariable "name",_city getVariable "type",_city getVariable "id"] call btc_fnc_city_trigger_player_side;
+
+_city setVariable ["RadiusX",_radius_x];
+_city setVariable ["RadiusY",_radius_y];
+
 [_pos,(random 360),btc_composition_hideout] call btc_fnc_create_composition;
-_city2 = _city;
-_city = [_pos,"NameCity",format ["Hideout %1", btc_hideouts_id],500,500,true] call btc_fnc_city_create;
 
 _hideout = nearestObject [_pos, "C_supplyCrate_F"];
 clearWeaponCargoGlobal _hideout;clearItemCargoGlobal _hideout;clearMagazineCargoGlobal _hideout;
@@ -44,19 +54,17 @@ _city setVariable ["has_ho",true];
 _city setVariable ["ho",_hideout];
 _city setVariable ["ho_pos",_pos];
 _city setVariable ["ho_units_spawned",false];
-//_city setVariable ["trigger_link_for_activation",_city2];
-_city2 setVariable ["no_de_activation",_city];
 
 if (btc_debug) then {
 	//Marker _pos = getpos _x;
 	createmarker [format ["btc_hideout_%1", _pos], _pos];
 	format ["btc_hideout_%1", _pos] setmarkertype "mil_unknown";
-	//format ["btc_hideout_%1", _pos] setMarkerText format ["Hideout %1", btc_hideouts_id];
+	format ["btc_hideout_%1", _pos] setMarkerText format ["Hideout %1", btc_hideouts_id];
 	format ["btc_hideout_%1", _pos] setMarkerSize [0.8, 0.8];
 	(format ["loc_%1",_city getVariable "id"]) setMarkerColor "ColorRed";
 };
 
-if (btc_debug_log) then {diag_log format ["btc_fnc_mil_create_hideout: _this = %1 ; POS %2 ID %3",(_city getVariable "name"),_pos,btc_hideouts_id];};
+if (btc_debug_log) then {diag_log format ["btc_fnc_mil_create_hideout: _this = %1 ; POS %2 ID %3",_this,_pos,btc_hideouts_id];};
 
 btc_hideouts_id = btc_hideouts_id + 1;
 btc_hideouts pushBack _hideout;

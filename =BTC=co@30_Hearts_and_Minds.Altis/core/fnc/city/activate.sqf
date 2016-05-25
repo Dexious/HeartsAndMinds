@@ -31,7 +31,7 @@ if (!_is_init) then {
 		});
 	_ratio_ied = _ratio;
 	if (_has_en) then {_ratio_ied = _ratio_ied * 1.5;} else {_ratio_ied = _ratio_ied * 0.75;};
-	if (_has_ho) then {_ratio_ied = _ratio_ied * 1;};
+	if (_has_ho) then {_ratio_ied = _ratio_ied * 2;};
 	//if (_has_en == 0 && {!_has_ho}) then {_ratio_ied = 0;};
 	diag_log format ["_ratio_ied %1 - p %2",_ratio_ied,_ratio_ied * btc_p_ied];
 	_ratio_ied = _ratio_ied * btc_p_ied;
@@ -148,10 +148,6 @@ if (_has_ho && {!(_city getVariable ["ho_units_spawned",false])}) then {
 	[_pos,120,(1 + random 2),0.5] call btc_fnc_mil_create_group;
 	[_pos,120,(1 + random 2),0.5] call btc_fnc_mil_create_group;
 };
-
-/*if (_has_ho && {(_city getVariable ["ho_units_spawned",false])}) then {
-	[(_city getVariable "trigger_link_for_activation") getVariable "id"] spawn btc_fnc_city_activate;
-};*/
 
 if (count _ieds > 0) then {
 	private ["_ieds_data"];
