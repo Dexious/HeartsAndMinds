@@ -13,7 +13,8 @@ if (count _this > 0) then {_city = _this;} else {
 			(
 				_x getVariable ["type",""] == "NameLocal" ||
 				{_x getVariable ["type",""] == "Hill"} ||
-				{_x getVariable ["type",""] == "NameVillage"}
+				{_x getVariable ["type",""] == "NameVillage"} ||
+				{_x getVariable ["type",""] == "Airport"}
 			)
 		)};
 	_city = selectRandom _useful;
@@ -21,7 +22,7 @@ if (count _this > 0) then {_city = _this;} else {
 
 _radius = (((_city getVariable ["RadiusX",0]) + (_city getVariable ["RadiusY",0]))/2);
 _random_pos = [getPos _city, _radius] call btc_fnc_randomize_pos;
-_pos = [_random_pos,100,false] call btc_fnc_findsafepos;
+_pos = [_random_pos,0,100,2,false] call btc_fnc_findsafepos;
 
 if (count _pos == 0) then {_pos = getPos _city;};
 

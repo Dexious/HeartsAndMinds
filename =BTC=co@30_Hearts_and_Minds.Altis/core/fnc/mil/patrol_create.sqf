@@ -1,5 +1,5 @@
 
-private ["_random","_city","_area","_cities","_useful","_usefuls","_pos","_group","_pos_iswater","_crewmen","_unit_type","_needdiver","_n_units","_spawn"];
+private ["_random","_city","_area","_cities","_useful","_usefuls","_pos","_group","_pos_iswater","_crewmen","_unit_type","_needdiver","_n_units","_spawn","_1"];
 
 _random = _this select 0;//0 random, 1 inf, 2 moto, 3 heli
 _city = _this select 1;
@@ -67,15 +67,16 @@ switch (true) do {
 		_newZone = [];
 		if (count (_pos nearRoads 150) > 0) then {
 			_newZone = getPos ((_pos nearRoads 150) select 0);
-		} else {
-			_newZone = [_pos,500,btc_p_sea] call btc_fnc_findsafepos;
-		};
-
-		_pos_iswater = (surfaceIsWater _newZone);
-		if (_pos_iswater) then {
-			_veh_type = selectRandom btc_type_boats;
-		} else {
+			_pos_iswater = false;
 			_veh_type = selectRandom btc_type_motorized;
+		} else {
+			_newZone = [_pos,0,500,13,btc_p_sea] call btc_fnc_findsafepos;
+			_pos_iswater = surfaceIsWater _newZone;
+			if (_pos_iswater) then {
+				_veh_type = selectRandom btc_type_boats;
+			} else {
+				_veh_type = selectRandom btc_type_motorized;
+			};
 		};
 
 		_needdiver = getText(configfile >> "CfgVehicles" >> _veh_type >> "simulation") isEqualTo "submarinex";
