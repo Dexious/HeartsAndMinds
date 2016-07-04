@@ -25,7 +25,7 @@ class Params {
         title = "Enemy type:";
 		values[]={0,1,2,3,4,5,6};
 		texts[]={"Guerrilla (A3)","CAF (@CAF Aggressors)","AAF (A3)","RHS Insurgents (@RHS_AFRF)","Militia (@=BTC= Militia)","Militia (@IWAR: Irregular Warfare)","Syndikat (A3)"};
-		default = 2;
+		default = 6;
 	};
 	class btc_p_ied {
 	//paramsArray[4]
