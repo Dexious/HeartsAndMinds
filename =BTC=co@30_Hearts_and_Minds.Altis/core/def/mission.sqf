@@ -41,7 +41,7 @@ btc_p_sea  = if ((paramsArray select 27) isEqualTo 0) then {false} else {true};
 _p_civ = (paramsArray select 28);
 _p_civ_veh = (paramsArray select 29);
 _p_city_radius = (paramsArray select 30) * 100;
-
+ace_rearm_level = (paramsArray select 31);
 //btc_acre_mod = isClass(configFile >> "cfgPatches" >> "acre_main");
 //btc_tfr_mod = isClass(configFile >> "cfgPatches" >> "task_force_radio");
 
@@ -126,7 +126,7 @@ if (isServer) then {
 	btc_side_assigned = false;
 	btc_side_done = false;
 	btc_side_failed = false;
-	btc_side_list = if (btc_p_sea) then {[0,1,2,3,4,5,6,7,8]} else {[0,1,2,3,4,5,6]};
+	btc_side_list = if (btc_p_sea) then {[0,1,2,3,4,5,6,7,8,9,10,11,12]} else {[0,1,2,3,4,5,6,9,10,11,12]};
 	btc_side_list_use = + btc_side_list;
 	btc_side_jip_data = [];
 	btc_type_tower = ["Land_Communication_F","Land_TTowerBig_1_F","Land_TTowerBig_2_F"];

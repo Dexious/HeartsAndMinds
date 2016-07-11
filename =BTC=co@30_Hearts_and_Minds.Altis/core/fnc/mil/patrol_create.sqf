@@ -64,7 +64,6 @@ switch (true) do {
 	};
 	case ((_random isEqualTo 2) || _pos_iswater) : {
 		private ["_veh_type","_newZone","_veh","_cargo"];
-		_newZone = [];
 		if (count (_pos nearRoads 150) > 0) then {
 			_newZone = getPos ((_pos nearRoads 150) select 0);
 			_pos_iswater = false;
@@ -88,7 +87,7 @@ switch (true) do {
 		if (_cargo > 0) then {
 			for "_i" from 0 to _cargo do {
 				_unit_type = [selectRandom btc_type_units, selectRandom btc_type_divers] select _needdiver;
-				_unit_type createUnit [_pos, _group, "this moveinCargo _veh;this assignAsCargo _veh;"];
+				_unit_type createUnit [_newZone, _group, "this moveinCargo _veh;this assignAsCargo _veh;"];
 			};
 		};
 
