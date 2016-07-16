@@ -44,7 +44,7 @@ _group = createGroup btc_enemy_side;
 _group setVariable ["city",_city];
 _group setVariable ["no_cache",true];
 _group setVariable ["btc_patrol",true];
-_group setVariable ["btc_patrol_id",btc_patrol_id];btc_patrol_id = btc_patrol_id + 1;
+_group setVariable ["btc_patrol_id",btc_patrol_id,btc_debug];btc_patrol_id = btc_patrol_id + 1;
 
 _pos_iswater = (surfaceIsWater _pos);
 
@@ -64,18 +64,17 @@ switch (true) do {
 	};
 	case ((_random isEqualTo 2) || _pos_iswater) : {
 		private ["_veh_type","_newZone","_veh","_cargo"];
-		_newZone = [];
 		if (count (_pos nearRoads 150) > 0) then {
 			_newZone = getPos ((_pos nearRoads 150) select 0);
 			_pos_iswater = false;
-			_veh_type = selectRandom btc_type_motorized;
+			_veh_type = selectRandom (btc_type_motorized + [selectRandom btc_civ_type_veh]);
 		} else {
 			_newZone = [_pos,0,500,13,btc_p_sea] call btc_fnc_findsafepos;
 			_pos_iswater = surfaceIsWater _newZone;
 			if (_pos_iswater) then {
 				_veh_type = selectRandom btc_type_boats;
 			} else {
-				_veh_type = selectRandom btc_type_motorized;
+				_veh_type = selectRandom (btc_type_motorized + [selectRandom btc_civ_type_veh]);
 			};
 		};
 
@@ -88,7 +87,7 @@ switch (true) do {
 		if (_cargo > 0) then {
 			for "_i" from 0 to _cargo do {
 				_unit_type = [selectRandom btc_type_units, selectRandom btc_type_divers] select _needdiver;
-				_unit_type createUnit [_pos, _group, "this moveinCargo _veh;this assignAsCargo _veh;"];
+				_unit_type createUnit [_newZone, _group, "this moveinCargo _veh;this assignAsCargo _veh;"];
 			};
 		};
 

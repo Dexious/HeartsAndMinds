@@ -23,8 +23,8 @@ class Params {
 	class btc_p_en {
 	//paramsArray[3]
         title = "Enemy type:";
-		values[]={0,1,2,3,4,5};
-		texts[]={"Guerrilla (A3)","CAF","AAF (A3)","RHS Insurgents","Militia (@=BTC= Militia)","Militia (@IWAR: Irregular Warfare)"};
+		values[]={0,1,2,3,4,5,6};
+		texts[]={"Guerrilla (A3)","CAF (@CAF Aggressors)","AAF (A3)","RHS Insurgents (@RHS_AFRF)","Militia (@=BTC= Militia)","Militia (@IWAR: Irregular Warfare)","Syndikat (A3)"};
 		default = 3;
 	};
 	class btc_p_ied {
@@ -215,5 +215,12 @@ class Params {
 		values[]={0,1,2,3,4,5,6,7,8};
 		texts[]={"0 m","100 m","200 m","300 m (Default)","400 m","500 m (Takistan)","600 m","700 m","800 m"};
 		default = 5;
+	};
+	class btc_p_rearm {
+	//paramsArray[31]
+        title = "Rearm Level:";
+		values[]={0,1,2};
+		texts[]={"Entire vehicle","Entire magazine","Amount based on caliber"};
+		default = 1;
 	};
 };

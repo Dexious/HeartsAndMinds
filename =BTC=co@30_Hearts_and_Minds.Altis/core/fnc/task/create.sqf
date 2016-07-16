@@ -58,7 +58,7 @@ switch (_this select 0) do
 	{
 		private "_task";
 		_task = player createSimpleTask [("Destroy tower in " + (_this select 2))];
-		_task setSimpleTaskDescription [format ["A Oplitas radio tower has been located in %1. Local population is asking for your help to destroy it!",(_this select 2)],("Destroy tower in " + (_this select 2)),("Destroy tower in " + (_this select 2))];
+		_task setSimpleTaskDescription [format ["A Oplitas radio tower has been located in %1. Local population is asking for your help to destroy it! (Use one M183 explosive satchel)",(_this select 2)],("Destroy tower in " + (_this select 2)),("Destroy tower in " + (_this select 2))];
 		_task setSimpleTaskDestination (_this select 1);
 		player setVariable ["task_7",_task];
 		["TaskAssigned",["New task assigned!",("Destroy tower in " + (_this select 2))]] call bis_fnc_showNotification;
@@ -76,7 +76,7 @@ switch (_this select 0) do
 	{
 		private "_task";
 		_task = player createSimpleTask [("Destroy checkpoints in " + (_this select 2))];
-		_task setSimpleTaskDescription [format ["Checkpoints has been located in %1. Local population is asking for your help to destroy it!",(_this select 2)],("Destroy checkpoints in " + (_this select 2)),("Destroy checkpoints in " + (_this select 2))];
+		_task setSimpleTaskDescription [format ["Checkpoints has been located in %1. Local population is asking for your help to destroy ammo box in checkpoint!",(_this select 2)],("Destroy checkpoints in " + (_this select 2)),("Destroy checkpoints in " + (_this select 2))];
 		_task setSimpleTaskDestination (_this select 1);
 		player setVariable ["task_9",_task];
 		["TaskAssigned",["New task assigned!",("Destroy checkpoints in " + (_this select 2))]] call bis_fnc_showNotification;
@@ -98,5 +98,41 @@ switch (_this select 0) do
 		_task setSimpleTaskDestination (_this select 1);
 		player setVariable ["task_11",_task];
 		["TaskAssigned",["New task assigned!",("Destroy underwater generator in " + (_this select 2))]] call bis_fnc_showNotification;
+	};
+	case 12 :
+	{
+		private "_task";
+		_task = player createSimpleTask [("Destroy a convoy attacking " + (_this select 2))];
+		_task setSimpleTaskDescription [format ["An armed convoy is going to attack %1. Local population is asking for your help to destroy it before!",(_this select 2)],("Destroy a convoy attacking " + (_this select 2)),("Destroy a convoy attacking " + (_this select 2))];
+		_task setSimpleTaskDestination (_this select 1);
+		player setVariable ["task_12",_task];
+		["TaskAssigned",["New task assigned!",("Destroy a convoy attacking " + (_this select 2))]] call bis_fnc_showNotification;
+	};
+	case 13 :
+	{
+		private "_task";
+		_task = player createSimpleTask [("Rescue a pilot near " + (_this select 2))];
+		_task setSimpleTaskDescription [format ["A pilot crashed his helicopter near %1. He is asking for your help to rescue him back to base!",(_this select 2)],("Rescue a pilot near " + (_this select 2)),("Rescue a pilot near " + (_this select 2))];
+		_task setSimpleTaskDestination (_this select 1);
+		player setVariable ["task_13",_task];
+		["TaskAssigned",["New task assigned!",("Rescue a pilot near " + (_this select 2))]] call bis_fnc_showNotification;
+	};
+	case 14 :
+	{
+		private "_task";
+		_task = player createSimpleTask [("Capture officer in convoy")];
+		_task setSimpleTaskDescription [format ["Capture an officer travelling in a convoy and bring him at base. He is terrorising local population!",(_this select 2)],("Capture officer in convoy"),("Capture officer in convoy")];
+		_task setSimpleTaskDestination (_this select 1);
+		player setVariable ["task_14",_task];
+		["TaskAssigned",["New task assigned!",("Capture officer in convoy")]] call bis_fnc_showNotification;
+	};
+	case 15 :
+	{
+		private "_task";
+		_task = player createSimpleTask [("Liberate hostage near " + (_this select 2))];
+		_task setSimpleTaskDescription [format ["Liberate a civilian hostage in %1. Local population is asking for your help!",(_this select 2)],("Liberate hostage near " + (_this select 2)),("Liberate hostage near " + (_this select 2))];
+		_task setSimpleTaskDestination (_this select 1);
+		player setVariable ["task_15",_task];
+		["TaskAssigned",["New task assigned!",("Liberate hostage near " + (_this select 2))]] call bis_fnc_showNotification;
 	};
 };

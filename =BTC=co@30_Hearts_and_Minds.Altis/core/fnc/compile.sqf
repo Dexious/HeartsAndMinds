@@ -113,6 +113,10 @@ if (isServer) then {
 	btc_fnc_side_checkpoint = compile preprocessFileLineNumbers "core\fnc\side\checkpoint.sqf";
 	btc_fnc_side_civtreatment_boat = compile preprocessFileLineNumbers "core\fnc\side\civtreatment_boat.sqf";
 	btc_fnc_side_underwater_generator= compile preprocessFileLineNumbers "core\fnc\side\underwater_generator.sqf";
+	btc_fnc_side_convoy = compile preprocessFileLineNumbers "core\fnc\side\convoy.sqf";
+	btc_fnc_side_rescue = compile preprocessFileLineNumbers "core\fnc\side\rescue.sqf";
+	btc_fnc_side_capture_officer = compile preprocessFileLineNumbers "core\fnc\side\capture_officer.sqf";
+	btc_fnc_side_hostage = compile preprocessFileLineNumbers "core\fnc\side\hostage.sqf";
 
 	//LOG
 	btc_fnc_log_getconfigmagazines = compile preprocessFile "core\fnc\log\getconfigmagazines.sqf";
