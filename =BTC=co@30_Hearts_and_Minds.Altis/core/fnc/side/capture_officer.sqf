@@ -90,7 +90,7 @@ _group setBehaviour "SAFE";
 _wp = _group addWaypoint [_pos2, 0];
 _wp setWaypointType "MOVE";
 _wp setWaypointCompletionRadius _radius_x/1.5;
-_wp setWaypointCombatMode "YELLOW";
+_wp setWaypointCombatMode "RED";
 _wp setWaypointSpeed "LIMITED";
 _wp setWaypointFormation "COLUMN";
 _wp setWaypointStatements ["true", "btc_side_failed = true"];
@@ -123,15 +123,11 @@ if (btc_side_failed) exitWith {
 	btc_side_assigned = false;publicVariable "btc_side_assigned";
 	deleteVehicle _trigger;
 	_group setVariable ["no_cache",false];
-	{(crew _x) joinSilent (createGroup btc_enemy_side)} forEach _vehs;
-	_city2 setVariable ["occupied",true];
-
-	_radius_x = _city2 getVariable ["RadiusX",0];
-	_radius_y = _city2 getVariable ["RadiusY",0];
-	if ({(_x distance _city2) < (_radius_x + _radius_y)} count playableUnits isEqualTo 0) then 	{
-		[_city2 getVariable "id"] call btc_fnc_city_activate;
-		[_city2 getVariable "id"] spawn btc_fnc_city_de_activate;
-	};
+	{
+		_group = createGroup btc_enemy_side;
+		(crew _x) joinSilent _group;
+		_group call btc_fnc_data_add_group;
+	} forEach _vehs;
 };
 
 50 call btc_fnc_rep_change;
