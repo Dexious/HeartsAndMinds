@@ -41,4 +41,7 @@ switch (_type) do {
 	case 11 : {
 		hint "One checkpoint destroyed!";
 	};
+	case 12 : {
+		hint "Database has NOT been saved!";
+	};
 };
