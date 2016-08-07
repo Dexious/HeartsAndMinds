@@ -1,3 +1,6 @@
+/*
+Thanks DAP for inspiration.
+*/
 
 private ["_usefuls","_city1","_city2","_pos1","_pos2","_area","_marker1","_marker2","_markers","_crewmen","_roads","_road","_veh_type","_vehs","_cargo","_radius_y","_radius_x","_veh_types","_captive","_random","_random_veh","_trigger"];
 
@@ -12,15 +15,13 @@ _usefuls = _cities select {((_x getVariable ["type",""] != "NameLocal") && {_x g
 if (_usefuls isEqualTo []) exitWith {[] spawn btc_fnc_side_create;};
 _city1 = selectRandom _usefuls;
 
+//// Find roads \\\\
 _radius_x = _city1 getVariable ["RadiusX",0];
 _roads = _city1 nearRoads (_radius_x * 2);
-_roads = _roads select {(_x distance _city1 > _radius_x )};
-if !(_roads isEqualTo []) then {
-	_road = selectRandom _roads;
-	_pos1 = getPos _road;
-} else {
-	_pos1 = getPos _city1;
-};
+_roads = _roads select {(_x distance _city1 > _radius_x ) && isOnRoad _x};
+if (_roads isEqualTo []) exitWith {[] spawn btc_fnc_side_create;};
+_road = selectRandom _roads;
+_pos1 = getPos _road;
 _pos2 = getPos _city2;
 
 btc_side_aborted = false;
@@ -136,9 +137,13 @@ if (btc_side_failed) exitWith {
 
 [_vehs + [_trigger],_group] spawn {
 	waitUntil {sleep 5; ({_x distance ((_this select 0) select 0) < 500} count playableUnits isEqualTo 0)};
-		{if (!isNull _x) then {deleteVehicle _x}} foreach units (_this select 1);
+		{if (!isNull _x) then {deleteVehicle _x}} foreach ((units (_this select 1)) - leader (_this select 1));
 		{if (!isNull _x) then {deleteVehicle _x}} foreach (_this select 0);
 		deleteGroup (_this select 1);
+};
+[_captive] spawn {
+	waitUntil {sleep 5; ({_x distance (_this select 0) < 500} count playableUnits isEqualTo 0)};
+	if (!isNull (_this select 0)) then {deleteVehicle (_this select 0)};
 };
 
 btc_side_assigned = false;publicVariable "btc_side_assigned";
