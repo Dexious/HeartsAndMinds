@@ -9,6 +9,7 @@ if (isServer) then {
 	btc_fnc_check_los = compile preprocessFile "core\fnc\common\check_los.sqf";
 	btc_fnc_clean_up = compile preprocessFile "core\fnc\common\clean_up.sqf";
 	btc_fnc_create_composition = compile preprocessFile "core\fnc\common\create_composition.sqf";
+	btc_fnc_create_attachto = compile preprocessFile "core\fnc\common\create_attachto.sqf";
 	btc_fnc_getHouses = compile preprocessFile "core\fnc\common\getHouses.sqf";
 	btc_fnc_house_addWP = compile preprocessFile "core\fnc\common\house_addWP.sqf";
 	btc_fnc_house_addWP_loop = compile preprocessFile "core\fnc\common\house_addWP_loop.sqf";
@@ -39,6 +40,7 @@ if (isServer) then {
 	btc_fnc_civ_traffic_eh = compile preprocessFile "core\fnc\civ\traffic_eh.sqf";
 	btc_fnc_civ_traffic_eh_remove = compile preprocessFile "core\fnc\civ\traffic_eh_remove.sqf";
 	btc_fnc_civ_unit_create = compile preprocessFile "core\fnc\civ\unit_create.sqf";
+	btc_fnc_civ_CuratorCivPlaced_s = compile preprocessFile "core\fnc\civ\CuratorCivPlaced_s.sqf";
 
 	//DATA
 	btc_fnc_data_add_group = compile preprocessFile "core\fnc\data\add_group.sqf";
@@ -92,6 +94,7 @@ if (isServer) then {
 	btc_fnc_mil_create_motorized = compile preprocessFile "core\fnc\mil\create_motorized.sqf";
 	btc_fnc_mil_patrol_eh = compile preprocessFile "core\fnc\mil\patrol_eh.sqf";
 	btc_fnc_mil_patrol_eh_remove = compile preprocessFile "core\fnc\mil\patrol_eh_remove.sqf";
+	btc_fnc_mil_CuratorMilPlaced_s = compile preprocessFile "core\fnc\mil\CuratorMilPlaced_s.sqf";
 
 	//REP
 	btc_fnc_rep_add_eh = compile preprocessFile "core\fnc\rep\add_eh.sqf";
@@ -134,7 +137,6 @@ btc_fnc_db_add_veh = compile preprocessFile "core\fnc\db\add_veh.sqf";
 
 //EH
 btc_fnc_eh_unit_init = compile preprocessFile "core\fnc\eh\unit_init.sqf";
-btc_fnc_eh_CuratorObjectPlaced = compile preprocessFile "core\fnc\eh\CuratorObjectPlaced.sqf";
 
 //INT
 btc_fnc_int_change_var = compile preprocessFile "core\fnc\int\change_var.sqf";
@@ -197,6 +199,8 @@ if (!isDedicated) then {
 
 	//EH
 	btc_fnc_eh_player_respawn = compile preprocessFile "core\fnc\eh\player_respawn.sqf";
+	btc_fnc_eh_CuratorObjectPlaced = compile preprocessFile "core\fnc\eh\CuratorObjectPlaced.sqf";
+
 
 	//FOB
 	btc_fnc_fob_create = compile preprocessFile "core\fnc\fob\create.sqf";
