@@ -170,3 +170,17 @@ if (profileNamespace getVariable [format ["btc_hm_%1_db",worldName],false]) then
 };
 
 btc_db_is_saving = false;
+
+if (profileNamespace getVariable [format ["btc_hm_%1_db",worldName],false]) then {
+	[[9],"btc_fnc_show_hint"] spawn BIS_fnc_MP;
+	diag_log format ["DATA SAVE, count array in profileNamespace: count _cities_status %1 count _array_ho %2", (profileNamespace getVariable [format ["btc_hm_%1_cities",_name],[]]) call btc_fnc_count, (profileNamespace getVariable [format ["btc_hm_%1_ho",_name],[]]) call btc_fnc_count];
+	diag_log format ["DATA SAVE, count array in profileNamespace: count _fobs %1 count _array_veh %2 count _array_obj %3", (profileNamespace getVariable [format ["btc_hm_%1_fobs",_name],[]]) call btc_fnc_count, (profileNamespace getVariable [format ["btc_hm_%1_vehs",_name],[]]) call btc_fnc_count, (profileNamespace getVariable [format ["btc_hm_%1_objs",_name],[]]) call btc_fnc_count];
+	diag_log format ["DATA SAVE: count str _cities_status %1 count str _array_ho %2", _cities_status call btc_fnc_count, _array_ho call btc_fnc_count];
+	diag_log format ["DATA SAVE: count str _fobs %1 count str _array_veh %2 count str _array_obj %3", _fobs call btc_fnc_count, _array_veh call btc_fnc_count, _array_obj call btc_fnc_count];
+} else {
+	[[12],"btc_fnc_show_hint"] spawn BIS_fnc_MP;
+	diag_log format ["DATA NOT SAVE: count _cities_status %1 count _array_ho %2", _cities_status call btc_fnc_count, _array_ho call btc_fnc_count];
+	diag_log format ["DATA NOT SAVE: count _fobs %1 count _array_veh %2 count _array_obj %3", _fobs call btc_fnc_count, _array_veh call btc_fnc_count, _array_obj call btc_fnc_count];
+	diag_log format ["DATA NOT SAVE: count str _cities_status %1 count str _array_ho %2", count str _cities_status, count str _array_ho];
+	diag_log format ["DATA NOT SAVE: count str _fobs %1 count str _array_veh %2 count str _array_obj %3", count str _fobs, count str _array_veh, count str _array_obj];
+};
